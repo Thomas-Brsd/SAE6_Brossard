@@ -50,15 +50,6 @@ const TourneeDetail = ({ route }) => {
             <Text style={styles.text}>Code Postal : {item.adresses?.codepostal || 'Non disponible'}</Text>
             <Text style={styles.text}>Ville : {item.adresses?.ville || 'Non disponible'}</Text>
 
-            {item.adresses?.localisation ? (
-              <Text style={styles.text}>
-                Localisation : {`Lat: ${item.adresses.localisation.coordinates[1]}, Long: ${item.adresses.localisation.coordinates[0]}`}
-              </Text>
-            ) : (
-              <Text style={styles.text}>Localisation non disponible</Text>
-            )}
-
-
             <Button
               title="Voir l'itinéraire sur la carte"
               onPress={() =>

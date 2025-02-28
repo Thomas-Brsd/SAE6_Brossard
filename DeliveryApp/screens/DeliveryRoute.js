@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
 const DeliveryRoute = ({ route }) => {
   const { depotId, depotName, adresse, codePostal, ville, localisation } = route.params;
@@ -8,17 +8,10 @@ const DeliveryRoute = ({ route }) => {
 
   useEffect(() => {
     const fetchItineraire = async () => {
-      try {
-        const response = await fetch(`https://votre-api.com/itineraire/${depotId}`);
-        const data = await response.json();
-        setItineraire(data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération de l'itinéraire:", error);
-      } finally {
-        setLoading(false);
-      }
+      const data = await getItineraireDepot(depotId);
+      setItineraire(data);
     };
-
+  
     fetchItineraire();
   }, [depotId]);
 
@@ -41,7 +34,6 @@ const DeliveryRoute = ({ route }) => {
       {itineraire ? (
         <View>
           <Text style={styles.text}>Itinéraire : {itineraire.description}</Text>
-          {/* Affichage de l'itinéraire ou d'autres informations pertinentes */}
         </View>
       ) : (
         <Text style={styles.text}>Aucun itinéraire disponible</Text>
